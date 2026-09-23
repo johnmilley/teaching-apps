@@ -3,3 +3,6 @@ __pycache__/
 
 # made when students run python-skills/08_files_keepers_log.py
 python-skills/*.txt
+
+# zipped copies of the apps
+*.zip
