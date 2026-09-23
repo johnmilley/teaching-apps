@@ -1,0 +1,5 @@
+.DS_Store
+__pycache__/
+
+# made when students run python-skills/08_files_keepers_log.py
+python-skills/*.txt

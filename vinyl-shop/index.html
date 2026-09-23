@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Needle &amp; Groove Records</title>
+  <meta name="description" content="New and used vinyl — a teaching storefront that shows its SQL and JavaScript.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../shared/lab.css">
+</head>
+<body class="loading">
+  <div class="announce">Free shipping on orders over $50 · Used records graded by hand</div>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <a href="#" class="logo" data-view="shop">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>Needle <em>&amp;</em> Groove</span>
+      </a>
+      <form class="search" id="search-form" role="search">
+        <input id="search" type="search" placeholder="Search albums or artists…" autocomplete="off" aria-label="Search">
+      </form>
+      <nav class="main-nav">
+        <a href="#" data-view="shop" class="on">Shop</a>
+        <a href="#" data-view="insights">Insights</a>
+        <button class="cart-btn" id="cart-btn" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM5.2 4l.4 2H20a1 1 0 0 1 1 1.2l-1.3 6.5A2 2 0 0 1 17.7 15H8.1a2 2 0 0 1-2-1.6L4.2 3.8 3 3.5V2h2a1 1 0 0 1 1 .8Z"/></svg>
+          Cart <span class="cart-count" id="cart-count" hidden>0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div id="shop">
+      <section class="hero wrap" id="hero"></section>
+
+      <div class="wrap shop-layout">
+        <aside class="filters" aria-label="Filters">
+          <div class="filters-head">
+            <h2>Filter</h2>
+            <button class="link" id="clear-filters">Clear all</button>
+          </div>
+
+          <fieldset>
+            <legend>Genre</legend>
+            <div id="genre-list"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Condition</legend>
+            <label class="check"><input type="radio" name="condition" value="all" checked><span>Any</span></label>
+            <label class="check"><input type="radio" name="condition" value="New"><span>New</span></label>
+            <label class="check"><input type="radio" name="condition" value="Used"><span>Used</span></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Max price <output id="price-out">Any</output></legend>
+            <input type="range" id="price" min="15" max="50" step="1" value="50">
+          </fieldset>
+
+          <fieldset>
+            <label class="check"><input type="checkbox" id="in-stock"><span>In stock only</span></label>
+          </fieldset>
+        </aside>
+
+        <section class="results">
+          <div class="toolbar">
+            <div>
+              <strong id="result-count"></strong>
+              <div class="active-filters" id="active-filters"></div>
+            </div>
+            <label class="sort">Sort by <select id="sort"></select></label>
+          </div>
+          <div class="grid" id="grid"></div>
+        </section>
+      </div>
+    </div>
+
+    <div id="insights" class="wrap insights" hidden></div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p><strong>Needle &amp; Groove Records</strong> — a teaching storefront. Everything on this page is SQLite running in your browser.</p>
+      <p class="muted">Press <kbd>`</kbd> or click <em>Under the hood</em> to see the SQL and the JavaScript array methods behind every click.</p>
+    </div>
+  </footer>
+
+  <!-- cart drawer -->
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="cart" id="cart" aria-label="Shopping cart" hidden>
+    <header class="cart-head">
+      <h2>Your cart</h2>
+      <button class="icon-btn" id="cart-close" aria-label="Close cart">✕</button>
+    </header>
+    <div class="cart-body" id="cart-body"></div>
+    <div class="cart-foot" id="cart-foot"></div>
+  </aside>
+
+  <!-- album modal -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <button class="icon-btn modal-close" aria-label="Close">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="../shared/vendor/sql-asm.js"></script>
+  <script src="../shared/highlight.js"></script>
+  <script src="../shared/lab.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

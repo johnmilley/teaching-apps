@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meeple &amp; Co. Board Games</title>
+  <meta name="description" content="A board game shop — a teaching storefront that shows its SQL and JavaScript.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../shared/lab.css">
+</head>
+<body class="loading">
+  <header class="site-head">
+    <div class="wrap head-row">
+      <a href="#" class="logo" data-view="shop"><span class="logo-mark" aria-hidden="true">🎲</span>Meeple <span>&amp;</span> Co.</a>
+      <nav class="main-nav">
+        <a href="#" data-view="shop" class="on">Games</a>
+        <a href="#" data-view="leaderboard">Leaderboard</a>
+        <a href="#" data-view="wishlist" class="wish-link">♥ Wishlist <span class="badge" id="wish-count" hidden>0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div id="shop">
+      <section class="finder">
+        <div class="wrap finder-grid">
+          <div class="finder-copy">
+            <p class="eyebrow">Game night finder</p>
+            <h1>What should we play tonight?</h1>
+            <div class="finder-controls">
+              <label>
+                <span>Players <output id="players-out">4</output></span>
+                <input type="range" id="players" min="1" max="10" value="4">
+              </label>
+              <label>
+                <span>Time we have <output id="minutes-out">60 min</output></span>
+                <input type="range" id="minutes" min="15" max="180" step="15" value="60">
+              </label>
+            </div>
+            <p class="finder-note">Drag the sliders — each move runs a <code>WHERE … LIMIT 3</code> query (or a <code>.filter().sort().slice()</code>).</p>
+          </div>
+          <div class="finder-out" id="finder-out"></div>
+        </div>
+      </section>
+
+      <section class="wrap catalog">
+        <div class="catalog-head">
+          <h2>All games <span class="muted" id="result-count"></span></h2>
+          <label class="sort">Sort <select id="sort"></select></label>
+        </div>
+        <div class="filter-bar">
+          <div class="seg" id="cats" role="group" aria-label="Category"></div>
+          <div class="seg seg-sm" id="weights" role="group" aria-label="Complexity"></div>
+          <select id="mechanic" aria-label="Mechanic"></select>
+        </div>
+        <div class="grid" id="grid"></div>
+      </section>
+    </div>
+
+    <div id="wishlist" class="wrap page" hidden></div>
+    <div id="leaderboard" class="wrap page" hidden></div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p><strong>Meeple &amp; Co.</strong> — a teaching storefront. The whole shop is a SQLite database running in your browser.</p>
+      <p class="muted">Press <kbd>`</kbd> or click <em>Under the hood</em> to see every query as SQL and as JavaScript array methods.</p>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <button class="icon-btn modal-close" aria-label="Close">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="../shared/vendor/sql-asm.js"></script>
+  <script src="../shared/highlight.js"></script>
+  <script src="../shared/lab.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
